@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import LifeCycle from './lifecycles/lifecycle-1'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  constructor(){
+    super()
+    console.log("App constructor")
+
+    this.state={
+      value1:true
+    }
+
+    this.onClickFunc=this.onClickFunc.bind(this)
+  }
+
+onClickFunc(){
+  this.setState({
+    value1:false
+  })
 }
 
-export default App;
+  render(){
+    console.log("App render")
+    return(
+      <div className="App">
+   {this.state.value1 && <LifeCycle  name=" Lifecycle"/>}   
+   <button onClick={this.onClickFunc}>onClickFunc</button>
+
+        </div>
+    )
+  }
+}
+
+export default App
